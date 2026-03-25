@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Verify Docker') {
+            steps {
+                bat 'where docker'
+                bat 'docker version'
+            }
+        }
+
+        stage('Create Docker Image') {
+            steps {
+                bat 'docker build -t dockerman .'
+            }
+        }
+    }
+}
