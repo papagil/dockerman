@@ -2,15 +2,25 @@ pipeline {
     agent any
 
     stages {
-        stage('Build Image') {
+        stage('delete old docker') {
             steps {
-                bat 'docker build -t dockerman .'
+                bat 'docker image rm dockerman || echo no image to rm'
             }
         }
-
+        stage('Build Image') {
+            steps {
+                bat 'docker build -t dmanI .'
+            }
+        }
+        stage('Stop Old Container') {
+            steps {
+                bat 'docker container stop dman || echo no container to stop'
+                bat 'docker container rm dman || echo no container to rm'
+            }
+        }
         stage('Run Container') {
             steps {
-                bat 'docker run -d -p 2222:80 --name dman dockerman'
+                bat 'docker run -d -p 2222:80 --name dmanC dmanI'
             }
         }
     }
