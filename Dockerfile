@@ -1,5 +1,3 @@
-FROM nginx  
-WORKDIR /Gil
-COPY . .
+FROM nginx
 COPY . /usr/share/nginx/html
 EXPOSE 80
