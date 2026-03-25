@@ -2,16 +2,15 @@ pipeline {
     agent any
 
     stages {
-        stage('Verify Docker') {
+        stage('Build Image') {
             steps {
-                bat 'where docker'
-                bat 'docker version'
+                bat 'docker build -t dockerman .'
             }
         }
 
-        stage('Create Docker Image') {
+        stage('Run Container') {
             steps {
-                bat 'docker build -t dockerman .'
+                bat 'docker run -d -p 2222:80 --name dman dockerman'
             }
         }
     }
