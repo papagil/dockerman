@@ -4,20 +4,13 @@ pipeline {
     stages {
         stage('Build Image') {
             steps {
-                bat 'docker build -t dmanI .'
-            }
-        }
-
-        stage('Stop Old Container') {
-            steps {
-                bat 'docker stop dockerman-container || echo no container'
-                bat 'docker rm dockerman-container || echo no container'
+                bat 'docker build -t dman .'
             }
         }
 
         stage('Run Container') {
             steps {
-                bat 'docker run -d -p 2222:80 --name dmanC dmanI'
+                bat 'docker run -d -p 2222:80 --name dman_c dmanI'
             }
         }
     }
