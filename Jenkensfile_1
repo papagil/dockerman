@@ -11,14 +11,14 @@ pipeline {
 
         stage('Stop and Remove Old Container') {
             steps {
-                bat 'docker container stop dmanC || echo no container to stop'
-                bat 'docker container rm dmanC || echo no container to remove'
+               // bat 'docker container stop dmanC || echo no container to stop'
+              //bat 'docker container rm dmanC || echo no container to remove'
             }
         }
 
         stage('Remove Old Image') {
             steps {
-                bat 'docker image rm dmanI || echo no image to remove'
+            //bat 'docker image rm dmanI || echo no image to remove'
             }
         }
 
