@@ -10,7 +10,7 @@ pipeline {
 
         stage('Run Container') {
             steps {
-                bat 'docker run -d -p 2222:80 --name dman_c dmanI'
+                bat 'docker run -d -p 2222:80 --name dman_c dman'
             }
         }
     }
