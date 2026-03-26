@@ -2,6 +2,13 @@ pipeline {
     agent any
 
     stages {
+        stage('Verify Docker') {
+            steps {
+                bat 'where docker'
+                bat 'docker version'
+            }
+        }
+
         stage('Stop and Remove Old Container') {
             steps {
                 bat 'docker container stop dmanC || echo no container to stop'
@@ -25,6 +32,18 @@ pipeline {
             steps {
                 bat 'docker run -d -p 2222:80 --name dmanC dmanI'
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline completed successfully.'
+        }
+        failure {
+            echo 'Pipeline failed.'
+        }
+        always {
+            echo 'Pipeline execution finished.'
         }
     }
 }
